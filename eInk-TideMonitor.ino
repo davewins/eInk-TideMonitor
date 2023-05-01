@@ -168,7 +168,10 @@ void setup() {
 
   if(!res) {
       Serial.println("Failed to connect");
-      // ESP.restart();
+      draw_string(display.width() / 2, display.height() / 2 + 12, "NO WIFI", CENTER);
+      display.update();
+      delay(5000);
+      ESP.restart();
   } 
   else {
       //if you get here you have connected to the WiFi    
@@ -292,6 +295,10 @@ void getTides() {
     client.setInsecure();
     if (!client.connect(host, httpsPort)) {
       PRINTLN("connection failed");
+      draw_string(display.width() / 2, display.height() / 2 + 12, "NO INTERNET", CENTER);
+      display.update();
+      delay(5000);
+      ESP.restart();
       return;
     }
 
